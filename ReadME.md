@@ -1,0 +1,1 @@
+Just another static link file
