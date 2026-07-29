@@ -1,8 +1,8 @@
 @echo off
 set updater_initialized=1
 
-set online_version=20260724.000
-set update_file_hash="786946cc5d748b8b96c89f72130df2b180bc1948"
+set online_version=20260724.001
+set update_file_hash="786946cc5d748b8b96c89f72130df2b180bc1949"
 
 set update_file_url="https://raw.githubusercontent.com/bdstd/xlua/main/Mounted_Image_Tools/Update_%online_version%.rar?%random%%random%"
 set update_file_path="%temp%\Mounted_Image_Tools.rar"
