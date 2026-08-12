@@ -1,0 +1,2 @@
+set xcu_ver=2025
+set xcu_sp=43
