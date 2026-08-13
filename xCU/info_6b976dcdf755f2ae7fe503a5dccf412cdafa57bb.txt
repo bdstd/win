@@ -1,3 +1,0 @@
-set xcu_ver=2025
-set xcu_sp=43
-set xcu_part=2
