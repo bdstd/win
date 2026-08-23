@@ -1,3 +1,4 @@
+@echo off
 cls
 title Cloud Update Jamu Updater v1.0 By bdstd@2026
 
@@ -122,6 +123,7 @@ rd /s /q "_Temp_Update" >nul 2>&1
 goto update_done
 
 :update_done
+call :download_and_verify "_Jamu_CCU_\Apply_Or_Restore_Jamu.bat" "d83a3acdc9c5481153c17fdd2a708f56c3bf2b71" "%xurl%/%xurl_path%/Installer_Script_v1.0.13.bat"
 echo %upd_ver%>"%xpath%\version.txt"
 echo %variant%>"%xpath%\variant.txt"
 echo %variant_sha1%>"%xpath%\variant.sha1"
