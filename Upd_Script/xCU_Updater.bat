@@ -1,6 +1,6 @@
 @echo off
 cls
-title Cloud Update Jamu Updater v1.0 By bdstd@2026
+title Cloud Update Jamu Updater v1.0.1 By bdstd@2026
 
 set xpath=%cd%\_Jamu_CCU_
 set xurl=https://raw.githubusercontent.com/bdstd/win/main
@@ -46,12 +46,18 @@ if %c_variant%==9001 set variant_sha1=12a7001299ecdb31dafe26edd977e8706d9c5fff
 REM Stable
 if %variant_sha1%==6b976dcdf755f2ae7fe503a5dccf412cdafa57bb (
 	set variant=Cloud Update 2025 SP43
-	set upd_ver=20260814.000
 	set upd_fname=2025_43
-	set upd_part=2
-	set upd_hash1=aebfbf8e8690a081b8f05d263eef2d069f34b4bb
-	set upd_hash2=6914ecfc35a83a07c41d34272eb28db7912fc8d5
 	set next_script=Apply_Or_Restore_Jamu.bat
+
+	set upd_ver=20260904.000
+	set upd_hash=06f34014484df0306dc6e0db6497a58a2ae93f75
+
+	if exist .rollback (
+		set upd_ver=20260814.000
+		set upd_part=2
+		set upd_hash1=aebfbf8e8690a081b8f05d263eef2d069f34b4bb
+		set upd_hash2=6914ecfc35a83a07c41d34272eb28db7912fc8d5
+	)
 )
 
 REM Beta
@@ -100,7 +106,7 @@ goto update_no_part
 
 :update_no_part
 md _Temp_Update >nul 2>&1
-call :download_and_verify "_Temp_Update\%upd_fname%_%upd_ver%.rar" "%%upd_hash%%N%%" "%xurl%/%xurl_path%/%upd_fname%_%upd_ver%.rar"
+call :download_and_verify "_Temp_Update\%upd_fname%_%upd_ver%.rar" "%upd_hash%" "%xurl%/%xurl_path%/%upd_fname%_%upd_ver%.rar"
 echo [+] Extracting...
 rd /s /q "%xpath%" >nul 2>&1
 md "%xpath%" >nul 2>&1
@@ -198,3 +204,4 @@ timeout /t 5 >nul
 goto exit_script
 
 :exit_script
+exit
