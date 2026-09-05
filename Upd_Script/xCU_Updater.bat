@@ -1,6 +1,6 @@
 @echo off
 cls
-title Cloud Update Jamu Updater v1.0.1 By bdstd@2026
+title Cloud Update Jamu Updater v1.0.3 By bdstd@2026
 
 set xpath=%cd%\_Jamu_CCU_
 set xurl=https://raw.githubusercontent.com/bdstd/win/main
@@ -31,7 +31,7 @@ cls
 echo Cloud Update Stable Version:
 echo [+] 1001 = 2025 SP43
 echo.
-echo Cloud Update Beta Version (Not Recommended):
+echo Cloud Update Beta Version (PNP Graphic Only, Not Recommended):
 echo [+] 9001 = 2026 SP23
 echo.
 set /p c_variant=Input Variant Number And Press Enter = 
@@ -49,8 +49,8 @@ if %variant_sha1%==6b976dcdf755f2ae7fe503a5dccf412cdafa57bb (
 	set upd_fname=2025_43
 	set next_script=Apply_Or_Restore_Jamu.bat
 
-	set upd_ver=20260904.000
-	set upd_hash=06f34014484df0306dc6e0db6497a58a2ae93f75
+	set upd_ver=20260905.000
+	set upd_hash=6e25d3fa2cc5133a62032e1644fe9c95987a412e
 
 	if exist .rollback (
 		set upd_ver=20260814.000
@@ -63,12 +63,19 @@ if %variant_sha1%==6b976dcdf755f2ae7fe503a5dccf412cdafa57bb (
 REM Beta
 if %variant_sha1%==12a7001299ecdb31dafe26edd977e8706d9c5fff (
 	set variant=Cloud Update 2026 SP23
-	set upd_ver=20260814.000
 	set upd_fname=2026_23
-	set upd_part=2
-	set upd_hash1=fe0376a41fb891435d5fb82a5a4ad80e784fb75f
-	set upd_hash2=0b8d1f507f369094bff918076ffacbed68736b8c
+	set upd_ver=20260814.000
 	set next_script=Apply_Or_Restore_Jamu.bat
+
+	set upd_ver=20260905.000
+	set upd_hash=b6c0cd286e8dda27c75a6d4cd55fa4c3ccd72ccb
+
+	if exist .rollback (
+		set upd_ver=20260814.000
+		set upd_part=2
+		set upd_hash1=fe0376a41fb891435d5fb82a5a4ad80e784fb75f
+		set upd_hash2=0b8d1f507f369094bff918076ffacbed68736b8c
+	)
 )
 
 
@@ -129,7 +136,7 @@ rd /s /q "_Temp_Update" >nul 2>&1
 goto update_done
 
 :update_done
-call :download_and_verify "_Jamu_CCU_\Apply_Or_Restore_Jamu.bat" "d83a3acdc9c5481153c17fdd2a708f56c3bf2b71" "%xurl%/%xurl_path%/Installer_Script_v1.0.13.bat"
+REM call :download_and_verify "_Jamu_CCU_\Apply_Or_Restore_Jamu.bat" "d83a3acdc9c5481153c17fdd2a708f56c3bf2b71" "%xurl%/%xurl_path%/Installer_Script_v1.0.13.bat"
 echo %upd_ver%>"%xpath%\version.txt"
 echo %variant%>"%xpath%\variant.txt"
 echo %variant_sha1%>"%xpath%\variant.sha1"
