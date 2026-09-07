@@ -29,9 +29,9 @@ set c_variant_by_choice=1
 set c_variant=
 cls
 echo Cloud Update Stable Version:
-echo [+] 1001 = 2025 SP43
+echo [+] 1001 = 2025 SP43 (Recommended)
 echo.
-echo Cloud Update Beta Version (PNP Graphic Only, Not Recommended):
+echo Cloud Update Beta Version:
 echo [+] 9001 = 2026 SP23
 echo.
 set /p c_variant=Input Variant Number And Press Enter = 
