@@ -1,1 +1,1 @@
-set svr_host=pastebin
+set svr_host=github
