@@ -2,6 +2,11 @@
 cls
 title ExtF Updater v1.0.7 - By bdstd@2026
 
+set "upd_part="
+set "upd_hash="
+set "upd_hash1="
+set "upd_hash2="
+
 set xpath=%cd%
 set xurl=https://raw.githubusercontent.com/bdstd/win/main
 set xurl_path=ExtF
@@ -15,8 +20,8 @@ call :prepare_xunrar
 :update_info
 set local_ver_path=_Tools_\Version.txt
 
-set upd_ver=20260908.000
-set upd_hash=bfdba6b5965b8e1a6453ad7f9abfa19a9030779b
+set upd_ver=20260909.000
+set upd_hash=b4ae79818ca868079dd79c1d86bb595fd95a5f45
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
