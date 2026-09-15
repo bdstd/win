@@ -1,6 +1,6 @@
 @echo off
 cls
-title CCBoot Server 20191221 Updater v1.0.5 - By bdstd@2026
+title CCBoot Server 20191221 Updater v1.0.7 - By bdstd@2026
 
 set xpath=%cd%
 set xurl=https://raw.githubusercontent.com/bdstd/win/main
@@ -10,13 +10,15 @@ set xurl_path=xBoot
 call :check_unblock "%~0"
 call :check_uac
 call :check_license
+call :check_crt
+call :prepare_mklnk
 call :prepare_xunrar
 
 :update_info
 set local_ver_path=Version.txt
 
-set upd_ver=20260829.002
-set upd_hash=2f3fa7ae4b97a666b20a20a97e6e977a5232d464
+set upd_ver=20260829.003
+set upd_hash=8432e9c44cf4f8d516fb3fd9336c5869f2cf13a6
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
@@ -159,6 +161,18 @@ echo Starting Activation...
 license.exe -b
 license.exe | find /i ": Registered" >nul && exit /b
 call :progress_fail "License Not Found In This PC!"
+
+:check_crt
+cls
+echo Checking CRT...
+call :download_and_verify "check_crt.exe" "dab81a8cd747a29849fdcc8c68887764d341f249" "%xurl%/Misc/check_crt.exe"
+check_crt || call :progress_fail "Please Install Visual C++ Redistributable 2015 x64 or Higher First!"
+
+:prepare_mklnk
+cls
+echo Updating MKLNK...
+call :download_and_verify "mklnk.exe" "c63c5f75457870a675cf3660c15e56962aad5069" "%xurl%/Misc/mklnk.exe"
+exit /b
 
 :prepare_xunrar
 del /q xUnRAR_v1.0.3.exe
