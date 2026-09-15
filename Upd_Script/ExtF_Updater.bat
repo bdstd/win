@@ -15,13 +15,14 @@ set xurl_path=ExtF
 REM call :check_unblock "%~0"
 REM call :check_uac
 REM call :check_license
+call :check_requirement
 call :prepare_xunrar
 
 :update_info
 set local_ver_path=_Tools_\Version.txt
 
-set upd_ver=20260909.000
-set upd_hash=b4ae79818ca868079dd79c1d86bb595fd95a5f45
+set upd_ver=20260916.000
+set upd_hash=e4ef6bbae32f9c34a4c4c03b3e3301eaa037d8da
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
@@ -40,6 +41,7 @@ call :download_and_verify "_Tools_\bdstd\inf2reg.exe" "d6ab9cb5763d530faa1ad21d9
 call :download_and_verify "_Tools_\bdstd\mich.exe" "375ddf71cd19374230c2166cf9d195d1b2fce46d" "%xurl%/mich.exe"
 call :download_and_verify "_Tools_\bdstd\vhdtools.exe" "e6cbff15074abe2d8d026422332b199a948fa554" "%xurl%/vhdtools.exe"
 call :download_and_verify "_Tools_\bdstd\runascurrentuser.exe" "ceb2467bb55635829f0e9c426ecebca157c708de" "%xurl%/runascurrentuser.exe"
+call :download_and_verify "_Tools_\bdstd\mklnk.exe" "c63c5f75457870a675cf3660c15e56962aad5069" "%xurl%/Misc/mklnk.exe"
 
 md _Tools_\sqlite3 >nul 2>&1
 call :download_and_verify "_Tools_\sqlite3\sqlite3.exe" "99a0270bb6303250ae0f9accd707bc0c476094a0" "%xurl%/sqlite3.exe"
@@ -168,6 +170,27 @@ echo Starting Activation...
 license.exe -b
 license.exe | find /i ": Registered" >nul && exit /b
 call :progress_fail "License Not Found In This PC!"
+
+:check_requirement
+if exist ..\CCBoot.exe (
+	if exist ..\CCBootHelper\Tools\extf_exec.exe (
+		exit /b
+	) else (
+		call :progress_fail "Please Update Your CCBoot Server First!"
+	)
+)
+if exist ..\iShareDisk.exe (
+	if exist ..\iShareDiskHelper\Tools\extf_exec.exe (
+		exit /b
+	) else (
+		call :progress_fail "Please Update Your iShareDisk Server First!"
+	)
+)
+if exist ..\lwdiskless64.exe (
+	exit /b
+)
+call :progress_fail "Unknown Diskless System!"
+exit
 
 :prepare_xunrar
 set xunrar=_Tools_\bdstd\xUnRAR_v1.0.3.exe
