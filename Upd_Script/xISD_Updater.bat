@@ -19,8 +19,8 @@ set local_ver_path=Version.txt
 
 set upd_ver=20260916.000
 set upd_part=2
-set upd_hash1=a56bc42ac3d610cbd973d44b1c797116407dc753
-set upd_hash2=5ab351410daa0ad9935041d6b0bda70b618cb24e
+set upd_hash1=35eb8502b917e06117f2a27c3772f0b58d924370
+set upd_hash2=5a090a368652674e27239cf23b1b0f949dd11dbd
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
