@@ -127,6 +127,8 @@ del /q ReadMe.txt >nul 2>&1
 del /q Changelog.txt >nul 2>&1
 xcopy /e /y /f _Temp_Update_\*.* >nul 2>&1
 rd /s /q _Temp_Update_ >nul 2>&1
+if exist Changelog.txt start "" notepad.exe Changelog.txt
+if exist Readme.txt start "" notepad.exe Readme.txt
 goto update_done
 
 :update_done
