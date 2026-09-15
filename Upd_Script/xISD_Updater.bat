@@ -10,15 +10,17 @@ set xurl_path=xISD
 call :check_unblock "%~0"
 call :check_uac
 call :check_license
+call :check_crt
+call :prepare_mklnk
 call :prepare_xunrar
 
 :update_info
 set local_ver_path=Version.txt
 
-set upd_ver=20260908.000
+set upd_ver=20260916.000
 set upd_part=2
-set upd_hash1=ee38cb66d372ca6fb2d9e55d3b943507e0dbf100
-set upd_hash2=17717f4657688476482f5f3c7a00bdf3aa5a8d0b
+set upd_hash1=a56bc42ac3d610cbd973d44b1c797116407dc753
+set upd_hash2=5ab351410daa0ad9935041d6b0bda70b618cb24e
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
@@ -151,6 +153,18 @@ echo Starting Activation...
 license.exe -b
 license.exe | find /i ": Registered" >nul && exit /b
 call :progress_fail "License Not Found In This PC!"
+
+:check_crt
+cls
+echo Checking CRT...
+call :download_and_verify "check_crt.exe" "dab81a8cd747a29849fdcc8c68887764d341f249" "%xurl%/Misc/check_crt.exe"
+check_crt || call :progress_fail "Please Install Visual C++ Redistributable 2015 x64 or Higher First!"
+
+:prepare_mklnk
+cls
+echo Updating MKLNK...
+call :download_and_verify "mklnk.exe" "c63c5f75457870a675cf3660c15e56962aad5069" "%xurl%/Misc/mklnk.exe"
+exit /b
 
 :prepare_xunrar
 del /q xUnRAR_v1.0.3.exe
