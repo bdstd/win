@@ -21,8 +21,8 @@ call :prepare_xunrar
 :update_info
 set local_ver_path=_Tools_\Version.txt
 
-set upd_ver=20260916.000
-set upd_hash=e4ef6bbae32f9c34a4c4c03b3e3301eaa037d8da
+set upd_ver=20260919.000
+set upd_hash=b1c47e94ce2600f775f0d980e333fd13e30f8be9
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
@@ -89,7 +89,7 @@ echo [+] Extracting...
 goto update_applying
 
 :update_applying
-rd /s /q "_Temp_Download_"
+rd /s /q "_Temp_Download_" >nul 2>&1
 
 echo [+] Updating To %upd_ver%...
 
@@ -101,6 +101,10 @@ taskkill /f /im ExtF.exe >nul 2>&1
 REM ExtF Delete Old Files
 del /q Mounted_Image_Tools.exe >nul 2>&1
 del /q CCBootExtF.exe >nul 2>&1
+rd /s /q "_CCBoot_Additional_Options_" >nul 2>&1
+rd /s /q "_CCU_Additional_Options_" >nul 2>&1
+rd /s /q "_iShareDisk_Additional_Options_" >nul 2>&1
+rd /s /q "_Mounted_Image_Tools_" >nul 2>&1
 
 REM Conditional
 if exist ..\CCBoot.exe (
