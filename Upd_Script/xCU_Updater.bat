@@ -49,8 +49,11 @@ if %variant_sha1%==6b976dcdf755f2ae7fe503a5dccf412cdafa57bb (
 	set upd_fname=2025_43
 	set next_script=Apply_Or_Restore_Jamu.bat
 
-	set upd_ver=20260908.000
-	set upd_hash=0b20e60e88c4ddf0ca46dae194f66b922496b077
+	set upd_ver=20260927.000
+	set upd_hash=b3d50a2e314fe70ed0e94fc2e8c93e1be7542d5e
+	
+	REM set upd_ver=20260908.000
+	REM set upd_hash=0b20e60e88c4ddf0ca46dae194f66b922496b077
 
 )
 
@@ -60,10 +63,13 @@ if %variant_sha1%==12a7001299ecdb31dafe26edd977e8706d9c5fff (
 	set upd_fname=2026_23
 	set next_script=Apply_Or_Restore_Jamu.bat
 
-	set upd_ver=20260908.000
-	set upd_part=2
-	set upd_hash1=cd659e1771721c94a2205346ead8c91d0a2e918a
-	set upd_hash2=38f5f73a968e37167fe068d3ff3c1b6228104367
+	set upd_ver=20260927.000
+	set upd_hash=44ef46c4161e7e8bbd9c135470dfa616f7c8204a
+	
+	REM set upd_ver=20260908.000
+	REM set upd_part=2
+	REM set upd_hash1=cd659e1771721c94a2205346ead8c91d0a2e918a
+	REM set upd_hash2=38f5f73a968e37167fe068d3ff3c1b6228104367
 
 )
 
