@@ -21,8 +21,8 @@ call :prepare_xunrar
 :update_info
 set local_ver_path=_Tools_\Version.txt
 
-set upd_ver=20260919.000
-set upd_hash=b1c47e94ce2600f775f0d980e333fd13e30f8be9
+set upd_ver=20260927.000
+set upd_hash=401e2a8e3d703cf312b08497424847847adf939c
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
@@ -193,7 +193,11 @@ if exist ..\iShareDisk.exe (
 	)
 )
 if exist ..\lwdiskless64.exe (
-	exit /b
+	if exist ..\CCUHelper\Tools\iefibootldr.bat (
+		exit /b
+	) else (
+		call :progress_fail "Please Update Your Jamu CCU First!"
+	)
 )
 call :progress_fail "Unknown Diskless System!"
 exit
