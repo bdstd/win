@@ -48,13 +48,17 @@ if %variant_sha1%==6b976dcdf755f2ae7fe503a5dccf412cdafa57bb (
 	set variant=Cloud Update 2025 SP43
 	set upd_fname=2025_43
 	set next_script=Apply_Or_Restore_Jamu.bat
-
-	set upd_ver=20260927.000
-	set upd_hash=b3d50a2e314fe70ed0e94fc2e8c93e1be7542d5e
 	
-	REM set upd_ver=20260908.000
-	REM set upd_hash=0b20e60e88c4ddf0ca46dae194f66b922496b077
+	set upd_ver=20261106.000
+	set upd_part=2
+	set upd_hash1=a41db689f20412b6b4e237386d9de41d3535c673
+	set upd_hash2=d5c567e5654947a99f60875db2964b1e8aa4ad4a
 
+	if exist .rollback_20260927.000 (
+		set upd_ver=20260927.000
+		set upd_hash=b3d50a2e314fe70ed0e94fc2e8c93e1be7542d5e
+		set upd_part=
+	)
 )
 
 REM Beta
@@ -127,6 +131,8 @@ goto update_extracted
 
 :update_extracted
 rd /s /q "_Temp_Update" >nul 2>&1
+del /q ".rollbac*" >nul 2>&1
+del /q ".beta" >nul 2>&1
 goto update_done
 
 :update_done
