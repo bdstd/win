@@ -49,10 +49,10 @@ if %variant_sha1%==6b976dcdf755f2ae7fe503a5dccf412cdafa57bb (
 	set upd_fname=2025_43
 	set next_script=Apply_Or_Restore_Jamu.bat
 	
-	set upd_ver=20261106.000
+	set upd_ver=20261106.001
 	set upd_part=2
-	set upd_hash1=a41db689f20412b6b4e237386d9de41d3535c673
-	set upd_hash2=d5c567e5654947a99f60875db2964b1e8aa4ad4a
+	set upd_hash1=12da376ae69ab5a229ede4ae8c0020dae7551708
+	set upd_hash2=c592408d7c9d24f77048afa3097d994a6e1f768e
 
 	if exist .rollback_20260927.000 (
 		set upd_ver=20260927.000
@@ -66,15 +66,17 @@ if %variant_sha1%==12a7001299ecdb31dafe26edd977e8706d9c5fff (
 	set variant=Cloud Update 2026 SP23
 	set upd_fname=2026_23
 	set next_script=Apply_Or_Restore_Jamu.bat
-
-	set upd_ver=20260927.000
-	set upd_hash=44ef46c4161e7e8bbd9c135470dfa616f7c8204a
 	
-	REM set upd_ver=20260908.000
-	REM set upd_part=2
-	REM set upd_hash1=cd659e1771721c94a2205346ead8c91d0a2e918a
-	REM set upd_hash2=38f5f73a968e37167fe068d3ff3c1b6228104367
+	set upd_ver=20261106.000
+	set upd_part=2
+	set upd_hash1=3290580bc7bd5dcb7a30f9a2497f2b48e2411db2
+	set upd_hash2=d4dc5e55984f74c009135549a039d42218b41844
 
+	if exist .rollback_20260927.000 (
+		set upd_ver=20260927.000
+		set upd_hash=44ef46c4161e7e8bbd9c135470dfa616f7c8204a
+		set upd_part=
+	)
 )
 
 if not defined variant (
