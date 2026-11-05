@@ -1,6 +1,6 @@
 @echo off
 cls
-title CCBoot Server 20191221 Updater v1.0.7 - By bdstd@2026
+title CCBoot Server 20191221 Updater v1.0.8 - By bdstd@2026
 
 set xpath=%cd%
 set xurl=https://raw.githubusercontent.com/bdstd/win/main
@@ -17,8 +17,16 @@ call :prepare_xunrar
 :update_info
 set local_ver_path=Version.txt
 
-set upd_ver=20260829.003
-set upd_hash=8432e9c44cf4f8d516fb3fd9336c5869f2cf13a6
+set upd_ver=20261105.000
+set upd_part=2
+set upd_hash1=4b49feb20c9a09138e6bbb7e72c6875c01875dac
+set upd_hash2=15684b13aaf8a5db025871b96771c429d19d844e
+
+if exist .rollback_20260829.003 (
+	set upd_ver=20260829.003
+	set upd_hash=8432e9c44cf4f8d516fb3fd9336c5869f2cf13a6
+	set upd_part=
+)
 
 REM Sample Update No Part
 REM set upd_ver=20260908.000
@@ -74,6 +82,7 @@ REM ========================== CCBoot Update Section
 :ccboot_kill_process
 taskkill /f /im CCBoot.exe >nul 2>&1
 taskkill /f /im CCBootHelper.exe >nul 2>&1
+taskkill /f /im ExtF.exe >nul 2>&1
  
 :ccboot_default_config
 if not exist CCBoot.ini copy /y _Temp_Custom_\CCBoot.ini CCBoot.ini >nul 2>&1
@@ -83,6 +92,23 @@ del /s /q _Temp_Custom_ >nul 2>&1
 rd /s /q _Temp_Custom_ >nul 2>&1
 del /s /q _Temp_Fix_ >nul 2>&1
 rd /s /q _Temp_Fix_ >nul 2>&1
+
+REM Old File
+rd /s /q "CCBootHelper\HTTP\Altiris" >nul 2>&1
+rd /s /q "CCBootHelper\HTTP\winpe" >nul 2>&1
+if exist "CCBootHelper\TFTP\newip.cfg" rd /s /q "CCBootHelper\TFTP" >nul 2>&1
+rd /s /q "CCBootHelper\Tools" >nul 2>&1
+
+REM Old File ExtF
+rd /s /q "CCBootExtF\_CCBoot_Additional_Options_" >nul 2>&1
+rd /s /q "CCBootExtF\_CCU_Additional_Options_" >nul 2>&1
+rd /s /q "CCBootExtF\_iShareDisk_Additional_Options_" >nul 2>&1
+rd /s /q "CCBootExtF\_Mounted_Image_Tools_" >nul 2>&1
+rd /s /q "CCBootExtF\_Tools_" >nul 2>&1
+del /q "CCBootExtF\CCU_Additional_Options.enc" >nul 2>&1
+del /q "CCBootExtF\iShareDisk_Additional_Options.enc" >nul 2>&1
+del /q "CCBootExtF\Changelog.txt" >nul 2>&1
+del /q "CCBootExtF\z_Update.bat" >nul 2>&1
  
 xcopy /c /e /y /f _Temp_Update_\*.* >nul 2>&1
 del /s /q _Temp_Update_ >nul 2>&1
@@ -116,6 +142,12 @@ if exist CCBootUI.exe (
 if exist CCBootUI_Set_Shortcut_And_Startup.bat (
 	start CCBootUI_Set_Shortcut_And_Startup.bat
 )
+if exist ReadMe.txt start "" notepad.exe ReadMe.txt
+if exist Changelog.txt start "" notepad.exe Changelog.txt
+
+:clean_update_flag
+del /q ".rollbac*" >nul 2>&1
+del /q ".beta" >nul 2>&1
 REM ========================== End Of CCBoot Update Section
 
 goto update_done
