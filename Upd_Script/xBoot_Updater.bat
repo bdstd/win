@@ -17,11 +17,17 @@ call :prepare_xunrar
 :update_info
 set local_ver_path=Version.txt
 
-set upd_ver=20261105.000
+set upd_ver=20261112.000
 set upd_part=2
-set upd_hash1=4b49feb20c9a09138e6bbb7e72c6875c01875dac
-set upd_hash2=15684b13aaf8a5db025871b96771c429d19d844e
+set upd_hash1=24f080f4fbbc4c1e3365ccc8396120743af2618e
+set upd_hash2=ab24860954ffa098ed6467624577cb6520bb4f2a
 
+if exist .rollback_20261105.000 (
+	set upd_ver=20261105.000
+	set upd_part=2
+	set upd_hash1=4b49feb20c9a09138e6bbb7e72c6875c01875dac
+	set upd_hash2=15684b13aaf8a5db025871b96771c429d19d844e
+)
 if exist .rollback_20260829.003 (
 	set upd_ver=20260829.003
 	set upd_hash=8432e9c44cf4f8d516fb3fd9336c5869f2cf13a6
